@@ -1,25 +1,9 @@
-const Singleton =  (function() {
-    let instance;
+function Iterator(items) {
+    const _items = items;
+    let index = 0;
 
-   const returnInstance = () => {
-        instance = new Object();
-        Object.freeze(instance);
-        return instance;
-    }
-
-
-
-    const getInstance = () => instance
-                                    ? (console.log(`Instance exist`), instance)
-                                    : (console.log(`No Instance`), returnInstance());
-
-    return {
-        getInstance
-    }
-                                    
-}());
-
-
-Singleton.getInstance();
-Singleton.getInstance();
-Singleton.getInstance();
+    this.first = () => _items[0];
+    this.next = () => (index++, _items[index]);
+    this.current = () => _items[index];
+    this.reset = () => index = 0;
+}
